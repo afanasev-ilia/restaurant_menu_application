@@ -54,6 +54,12 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+Запустить тесты для views.py:
+
+```bash
+python manage.py test
+```
+
 ## Шаблон наполнения .env
 ```
 SECRET_KEY='********************************'

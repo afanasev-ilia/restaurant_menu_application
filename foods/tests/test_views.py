@@ -17,29 +17,32 @@ class FoodListViewSetTest(TestCase):
         )
         self.published_food = Food.objects.create(
             name_ru="Published Food",
-            code=123
+            code=123,
+            cost=1234,
             is_publish=True,
             category=self.category_with_published_food,
         )
         self.unpublished_food = Food.objects.create(
             name_ru="Unpublished Food",
-            code=1234
+            code=1234,
+            cost=1234,
             is_publish=False,
             category=self.category_without_published_food,
+        )
+        self.unpublished_food_in_category_with_published_food = Food.objects.create(
+            name_ru="Unpublished Food in category with published food",
+            code=12345,
+            cost=12345,
+            is_publish=False,
+            category=self.category_with_published_food,
         )
 
     def test_correct_queryset(self):
         view = FoodListViewSet()
         queryset = view.get_queryset()
         self.assertNotIn(self.category_without_food, queryset)
-        self.assertNotIn(self.category_with_published_food, queryset)
+        self.assertNotIn(self.category_without_published_food, queryset)
         self.assertIn(self.category_with_published_food, queryset)
-        
-
-
-        # self.assertIn(self.published_food, queryset)
-        # self.assertNotIn(self.unpublished_food, queryset)
-
-
-        # self.assertEqual(queryset.count(), 1)
-        # self.assertEqual(queryset.first(), self.published_food)
+        self.assertNotIn(self.unpublished_food_in_category_with_published_food, queryset)
+        self.assertNotIn(self.unpublished_food, queryset)
+        self.assertEqual(queryset.first(), self.published_food.category)
