@@ -24,6 +24,7 @@ class FoodSerializer(serializers.ModelSerializer):
             'cost',
             'additional',
         )
+        filterset_fields = ['is_publish']
 
 
 class FoodListSerializer(serializers.ModelSerializer):
