@@ -8,10 +8,6 @@ class FoodListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = FoodListSerializer
 
     def get_queryset(self):
-        queryset = FoodCategory.objects.all().order_by('id')
-        queryset = (
-            queryset.prefetch_related('food')
-            .filter(food__is_publish=True)
-            .distinct()
+        return (
+            FoodCategory.objects.select_related('food')
         )
-        return queryset
