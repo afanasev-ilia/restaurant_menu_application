@@ -17,6 +17,7 @@ class FoodAdmin(admin.ModelAdmin):
         "cost",
     )
 
+
 @admin.register(FoodCategory)
 class FoodCategoryAdmin(admin.ModelAdmin):
     list_display = (

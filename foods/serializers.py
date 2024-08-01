@@ -24,15 +24,10 @@ class FoodSerializer(serializers.ModelSerializer):
             'cost',
             'additional',
         )
-        filterset_fields = ['is_publish']
 
 
 class FoodListSerializer(serializers.ModelSerializer):
-    foods = FoodSerializer(
-        source='food',
-        many=True,
-        read_only=True,
-    )
+    foods = serializers.SerializerMethodField()
 
     class Meta:
         model = FoodCategory
@@ -44,3 +39,8 @@ class FoodListSerializer(serializers.ModelSerializer):
             'order_id',
             'foods',
         )
+
+    def get_foods(self, obj):
+        foods = Food.objects.filter(is_publish=True, category=obj)
+        serializer = FoodSerializer(instance=foods, many=True)
+        return serializer.data

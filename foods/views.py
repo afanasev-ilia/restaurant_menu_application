@@ -9,5 +9,9 @@ class FoodListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
     def get_queryset(self):
         return (
-            FoodCategory.objects.select_related('food')
+            FoodCategory.objects.all()
+            .prefetch_related('food')
+            .filter(food__is_publish=True)
+            .distinct()
+            .order_by('id')
         )
