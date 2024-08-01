@@ -105,3 +105,7 @@ class Food(TimeStampedModel):
 
     def __str__(self):
         return self.name_ru
+
+    class Meta:
+        verbose_name = 'Блюдо'
+        verbose_name_plural = 'Блюда'

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from dishes.models import Food, FoodCategory
+from foods.models import Food, FoodCategory
 
 
 class FoodSerializer(serializers.ModelSerializer):
