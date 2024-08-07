@@ -7,6 +7,7 @@ class FoodCategory(TimeStampedModel):
         verbose_name='Название на русском',
         max_length=255,
         unique=True,
+        help_text='Укажите название на русском',
     )
     name_en = models.CharField(
         verbose_name='Название на английском',
@@ -14,6 +15,7 @@ class FoodCategory(TimeStampedModel):
         unique=True,
         blank=True,
         null=True,
+        help_text='Укажите название на английском',
     )
     name_ch = models.CharField(
         verbose_name='Название на китайском',
@@ -21,6 +23,7 @@ class FoodCategory(TimeStampedModel):
         unique=True,
         blank=True,
         null=True,
+        help_text='Укажите название на китайском',
     )
     order_id = models.SmallIntegerField(
         default=10,
