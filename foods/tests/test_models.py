@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from foods.models import FoodCategory
+from foods.models import Food, FoodCategory
 
 
 class FoodCategoryModelTest(TestCase):
@@ -40,5 +40,44 @@ class FoodCategoryModelTest(TestCase):
             with self.subTest(field=field):
                 self.assertEqual(
                     food_category._meta.get_field(field).help_text,
+                    expected_value,
+                )
+
+
+class FoodModelTest(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.food_category = FoodCategory.objects.create(
+            name_ru='Название тестовой категории',
+        )
+        cls.food = Food.objects.create(
+            category=cls.food_category,
+            code=100,
+            name_ru='Test food 1',
+            cost=10.00
+            )
+
+    def test_verbose_name(self):
+        """verbose_name в полях совпадает с ожидаемым."""
+        food = FoodModelTest.food
+        field_verboses = {
+            'category': 'Раздел меню',
+            'is_vegan': 'Вегетарианское меню',
+            'is_special': 'Специальное предложение',
+            'code': 'Код поставщика',
+            'internal_code': 'Код в приложении',
+            'name_ru': 'Название на русском',
+            'description_ru': 'Описание на русском',
+            'description_en': 'Описание на английском',
+            'description_ch': 'Описание на китайском',
+            'cost': 'Цена',
+            'is_publish': 'Опубликовано',
+            'additional': 'Дополнительные товары',
+        }
+        for field, expected_value in field_verboses.items():
+            with self.subTest(field=field):
+                self.assertEqual(
+                    food._meta.get_field(field).verbose_name,
                     expected_value,
                 )
