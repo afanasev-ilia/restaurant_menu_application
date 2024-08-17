@@ -81,3 +81,27 @@ class FoodModelTest(TestCase):
                     food._meta.get_field(field).verbose_name,
                     expected_value,
                 )
+
+    def test_help_text(self):
+        """help_text в полях совпадает с ожидаемым."""
+        food = FoodModelTest.food
+        field_help_texts = {
+            'category': 'Укажите название на русском',
+            'is_vegan': 'Укажите название на английском',
+            'is_special': 'Укажите название на китайском',
+            'code': 'Укажите название на русском',
+            'internal_code': 'Укажите название на английском',
+            'name_en': 'Укажите название на английском',
+            'description_ru': 'Укажите название на китайском',
+            'description_en': 'Укажите название на русском',
+            'description_ch': 'Укажите название на английском',
+            'cost': 'Укажите название на китайском',
+            'is_publish': 'Укажите название на русском',
+            'additional': 'Укажите название на английском',
+        }
+        for field, expected_value in field_help_texts.items():
+            with self.subTest(field=field):
+                self.assertEqual(
+                    food._meta.get_field(field).help_text,
+                    expected_value,
+                )
