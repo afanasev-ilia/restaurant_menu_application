@@ -60,7 +60,10 @@ class Food(TimeStampedModel):
         help_text='Укажите относится ли блюдо к специальным предложениям',
     )
 
-    code = models.IntegerField(verbose_name='Код поставщика')
+    code = models.IntegerField(
+        verbose_name='Код поставщика',
+        help_text='Укажите код поставщика',
+    )
     internal_code = models.IntegerField(
         verbose_name='Код в приложении',
         unique=True, null=True,
