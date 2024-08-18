@@ -57,7 +57,7 @@ class Food(TimeStampedModel):
     is_special = models.BooleanField(
         verbose_name='Специальное предложение',
         default=False,
-        help_text='Укажите относится ли блюдо к специальным предложениям',
+        help_text='Укажите является ли блюдо специальным предложением',
     )
 
     code = models.IntegerField(
