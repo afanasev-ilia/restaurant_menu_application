@@ -15,7 +15,6 @@ class FoodCategoryModelTest(TestCase):
 
     def test_verbose_name(self):
         """verbose_name в полях совпадает с ожидаемым."""
-        food_category = FoodCategoryModelTest.food_category
         field_verboses = {
             'name_ru': 'Название на русском',
             'name_en': 'Название на английском',
@@ -24,13 +23,12 @@ class FoodCategoryModelTest(TestCase):
         for field, expected_value in field_verboses.items():
             with self.subTest(field=field):
                 self.assertEqual(
-                    food_category._meta.get_field(field).verbose_name,
+                    self.food_category._meta.get_field(field).verbose_name,
                     expected_value,
                 )
 
     def test_help_text(self):
         """help_text в полях совпадает с ожидаемым."""
-        food_category = FoodCategoryModelTest.food_category
         field_help_texts = {
             'name_ru': 'Укажите название на русском',
             'name_en': 'Укажите название на английском',
@@ -39,9 +37,14 @@ class FoodCategoryModelTest(TestCase):
         for field, expected_value in field_help_texts.items():
             with self.subTest(field=field):
                 self.assertEqual(
-                    food_category._meta.get_field(field).help_text,
+                    self.food_category._meta.get_field(field).help_text,
                     expected_value,
                 )
+
+    def test_method___str__(self):
+        """метод __str__ совпадает с ожидаемым.."""
+        expected_object_name = self.food_category.name_ru
+        self.assertEqual(expected_object_name, str(self.food_category))
 
 
 class FoodModelTest(TestCase):
@@ -60,7 +63,6 @@ class FoodModelTest(TestCase):
 
     def test_verbose_name(self):
         """verbose_name в полях совпадает с ожидаемым."""
-        food = FoodModelTest.food
         field_verboses = {
             'category': 'Раздел меню',
             'is_vegan': 'Вегетарианское меню',
@@ -78,13 +80,12 @@ class FoodModelTest(TestCase):
         for field, expected_value in field_verboses.items():
             with self.subTest(field=field):
                 self.assertEqual(
-                    food._meta.get_field(field).verbose_name,
+                    self.food._meta.get_field(field).verbose_name,
                     expected_value,
                 )
 
     def test_help_text(self):
         """help_text в полях совпадает с ожидаемым."""
-        food = FoodModelTest.food
         field_help_texts = {
             'category': 'Укажите раздел меню',
             'is_vegan': 'Укажите относится ли блюдо к вегетарианскому меню',
@@ -102,6 +103,11 @@ class FoodModelTest(TestCase):
         for field, expected_value in field_help_texts.items():
             with self.subTest(field=field):
                 self.assertEqual(
-                    food._meta.get_field(field).help_text,
+                    self.food._meta.get_field(field).help_text,
                     expected_value,
                 )
+
+    def test_method___str__(self):
+        """метод __str__ совпадает с ожидаемым.."""
+        expected_object_name = self.food.name_ru
+        self.assertEqual(expected_object_name, str(self.food))
