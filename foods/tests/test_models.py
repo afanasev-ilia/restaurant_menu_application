@@ -14,7 +14,7 @@ class FoodCategoryModelTest(TestCase):
         )
 
     def test_verbose_name(self):
-        """verbose_name в полях совпадает с ожидаемым."""
+        '''verbose_name в полях совпадает с ожидаемым.'''
         field_verboses = {
             'name_ru': 'Название на русском',
             'name_en': 'Название на английском',
@@ -28,7 +28,7 @@ class FoodCategoryModelTest(TestCase):
                 )
 
     def test_help_text(self):
-        """help_text в полях совпадает с ожидаемым."""
+        '''help_text в полях совпадает с ожидаемым.'''
         field_help_texts = {
             'name_ru': 'Укажите название на русском',
             'name_en': 'Укажите название на английском',
@@ -42,7 +42,7 @@ class FoodCategoryModelTest(TestCase):
                 )
 
     def test_method___str__(self):
-        """метод __str__ совпадает с ожидаемым.."""
+        '''метод __str__ совпадает с ожидаемым.'''
         expected_object_name = self.food_category.name_ru
         self.assertEqual(expected_object_name, str(self.food_category))
 
@@ -62,7 +62,7 @@ class FoodModelTest(TestCase):
             )
 
     def test_verbose_name(self):
-        """verbose_name в полях совпадает с ожидаемым."""
+        '''verbose_name в полях совпадает с ожидаемым.'''
         field_verboses = {
             'category': 'Раздел меню',
             'is_vegan': 'Вегетарианское меню',
@@ -85,7 +85,7 @@ class FoodModelTest(TestCase):
                 )
 
     def test_help_text(self):
-        """help_text в полях совпадает с ожидаемым."""
+        '''help_text в полях совпадает с ожидаемым.'''
         field_help_texts = {
             'category': 'Укажите раздел меню',
             'is_vegan': 'Укажите относится ли блюдо к вегетарианскому меню',
@@ -108,6 +108,6 @@ class FoodModelTest(TestCase):
                 )
 
     def test_method___str__(self):
-        """метод __str__ совпадает с ожидаемым.."""
+        '''метод __str__ совпадает с ожидаемым.'''
         expected_object_name = self.food.name_ru
         self.assertEqual(expected_object_name, str(self.food))
