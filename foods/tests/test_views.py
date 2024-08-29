@@ -7,23 +7,23 @@ from foods.views import FoodListViewSet
 class FoodListViewSetTest(TestCase):
     def setUp(self):
         self.category_without_food = FoodCategory.objects.create(
-            name_ru='Test category without_food'
+            name_ru='Тестовая категория без блюд'
         )
         self.category_without_published_food = FoodCategory.objects.create(
-            name_ru='Test category without published food'
+            name_ru='Тестовая категория без опубликованных блюд'
         )
         self.category_with_published_food = FoodCategory.objects.create(
-            name_ru='Test category with published food'
+            name_ru='Тестовая категория с опубликованными блюдами'
         )
         self.published_food = Food.objects.create(
-            name_ru='Published Food',
+            name_ru='Опубликованное блюдо',
             code=123,
             cost=1234,
             is_publish=True,
             category=self.category_with_published_food,
         )
         self.unpublished_food = Food.objects.create(
-            name_ru='Unpublished Food',
+            name_ru='Неопубликованное блюдо',
             code=1234,
             cost=1234,
             is_publish=False,
@@ -31,7 +31,7 @@ class FoodListViewSetTest(TestCase):
         )
         self.unpublished_food_in_category_with_published_food = (
             Food.objects.create(
-                name_ru='Unpublished Food in category with published food',
+                name_ru='Неапубликованное блюдо в категории с опубликованными блюдами',
                 code=12345,
                 cost=12345,
                 is_publish=False,
